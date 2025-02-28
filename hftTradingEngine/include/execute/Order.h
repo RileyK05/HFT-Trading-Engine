@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <array>
 #include <string>
@@ -62,6 +64,17 @@ public:
     {}
 
     //Parameterized constructor, use when order is placed with all info given
-    Order(std::string newTicker, OrderTypes type, double orderQty, long double price = 0.0) :
-        ticker(newTicker)
+    Order(std::string newTicker, OrderTypes type, double orderQty) :
+        ticker(newTicker),
+        orderType(type),
+        orderStatus(OrderStatus::NEW),
+        quantity(orderQty),
+        price(getOrderPrice()),
+        id(generateId()),
+        timeOfPurchase(getOrderTime()),
+        validPurchase(isValidPurchase())
+    { }
+
+    long double getOrderPrice();
+
 };

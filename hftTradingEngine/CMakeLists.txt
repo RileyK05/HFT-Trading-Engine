@@ -12,13 +12,13 @@ set(HEADERS
     # include/strategy/VwapStrategy.h
     # include/market/MarketData.h
     # include/market/MarketDataProvider.h
-    # include/execute/Order.h
+    include/execute/Order.h
     # include/execute/OrderManager.h
     # include/risk/RiskManager.h
 )
 
 # Create the executable
-add_executable(hftEngine ${SOURCES} ${HEADERS})
+add_executable(hftEngine ${SOURCES} ${HEADERS} "src/execute/Order.cpp")
 
 # Add include directories
 target_include_directories(hftEngine PRIVATE
