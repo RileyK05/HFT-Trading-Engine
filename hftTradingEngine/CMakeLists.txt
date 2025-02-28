@@ -23,7 +23,11 @@ add_executable(hftEngine ${SOURCES} ${HEADERS} "src/execute/Order.cpp")
 # Add include directories
 target_include_directories(hftEngine PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CURL_INCLUDE_DIRS}  # Add cURL include directories
 )
+
+# Link cURL library
+target_link_libraries(hftEngine PRIVATE ${CURL_LIBRARIES})
 
 # Set compile options for different platforms
 if(MSVC)
