@@ -1,3 +1,8 @@
 #include <curl/curl.h>
-#include <json/json.h>
+#include <iostream>
+#include <string>
+#include <regex>
 
+class StockData {
+
+};

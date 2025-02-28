@@ -2,6 +2,7 @@
 # We'll add other files as you develop them
 set(SOURCES
     src/main.cpp
+    src/execute/Order.cpp
 )
 
 # Add header files
@@ -18,16 +19,25 @@ set(HEADERS
 )
 
 # Create the executable
-add_executable(hftEngine ${SOURCES} ${HEADERS} "src/execute/Order.cpp")
+add_executable(hftEngine ${SOURCES} ${HEADERS})
 
-# Add include directories
+# Add include directories - direct approach to bypass find_package issues
 target_include_directories(hftEngine PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CURL_INCLUDE_DIRS}  # Add cURL include directories
+    "C:/Users/riley/vcpkg/installed/x64-windows/include"  # Direct cURL include path
 )
 
-# Link cURL library
-target_link_libraries(hftEngine PRIVATE ${CURL_LIBRARIES})
+# Link against cURL - direct approach to bypass find_package issues
+target_link_libraries(hftEngine PRIVATE
+    "C:/Users/riley/vcpkg/installed/x64-windows/lib/libcurl.lib"
+)
+
+# Copy the cURL DLL to the output directory
+add_custom_command(TARGET hftEngine POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "C:/Users/riley/vcpkg/installed/x64-windows/bin/libcurl.dll"
+    $<TARGET_FILE_DIR:hftEngine>
+)
 
 # Set compile options for different platforms
 if(MSVC)

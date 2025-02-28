@@ -1,7 +1,7 @@
 #include "Execute/Order.h"
 
 long double Order::getOrderPrice() {
-	
+	return 0;
 }
 
 long long Order::generateId() {
@@ -15,3 +15,4 @@ time_t Order::getOrderTime() {
 bool Order::isValidPurchase() {
 	return false;
 }
+
