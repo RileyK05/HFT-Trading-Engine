@@ -75,7 +75,6 @@ public:
         validPurchase(isValidPurchase())
     { }
 
-
     long double getOrderPrice();
     long long generateId();
     time_t getOrderTime();
